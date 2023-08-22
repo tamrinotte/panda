@@ -1,6 +1,6 @@
 # PANDA SETUP
 
-![PandaSetupLogo](https://raw.githubusercontent.com/tamrinotte/panda_setup/main/app_images/panda_setup.png)
+![PandaSetupLogo](https://raw.githubusercontent.com/tamrinotte/panda/main/app_images/panda_setup.png)
 
 <br>
 
@@ -46,7 +46,7 @@ __--help:__ Shows the help message and exits.
 
 <br>
 
-![PandaSetupLogo](https://raw.githubusercontent.com/tamrinotte/panda_setup/main/app_images/panda_setup.png)
+![PandaSetupLogo](https://raw.githubusercontent.com/tamrinotte/panda/main/app_images/panda_setup.png)
 
 <br>
 
