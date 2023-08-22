@@ -1,6 +1,6 @@
 # PANDA SETUP
 
-![PandaSetupLogo](https://raw.githubusercontent.com/dogaegeozden/panda_setup/main/app_images/panda_setup.png)
+![PandaSetupLogo](https://raw.githubusercontent.com/tamrinotte/panda_setup/main/app_images/panda_setup.png)
 
 <br>
 
@@ -30,7 +30,7 @@ __--help:__ Shows the help message and exits.
 
 2) Download the installer
 	
-       curl -L https://github.com/dogaegeozden/panda_setup/releases/download/setup/panda.deb -o panda.deb
+       curl -L https://github.com/tamrinotte/panda_setup/releases/download/setup/panda.deb -o panda.deb
 
 3) Start the installer
 
@@ -46,7 +46,7 @@ __--help:__ Shows the help message and exits.
 
 <br>
 
-![PandaSetupLogo](https://raw.githubusercontent.com/dogaegeozden/panda_setup/main/app_images/panda_setup.png)
+![PandaSetupLogo](https://raw.githubusercontent.com/tamrinotte/panda_setup/main/app_images/panda_setup.png)
 
 <br>
 
@@ -76,7 +76,7 @@ __--help:__ Yardım sayfasını görüntüler.
 
 2) Yükleyiciyi indir
 	
-       curl -L https://github.com/dogaegeozden/panda_setup/releases/download/setup/panda.deb -o panda.deb
+       curl -L https://github.com/tamrinotte/panda_setup/releases/download/setup/panda.deb -o panda.deb
 
 3) Yükleyiciyi başlat
 
