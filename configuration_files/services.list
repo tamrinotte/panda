@@ -9,3 +9,5 @@ openvpn.service
 apache2
 httpd
 bluetooth.service
+chronyd
+ntp

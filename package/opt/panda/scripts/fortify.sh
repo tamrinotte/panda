@@ -12,14 +12,20 @@ main() {
     # Calling the allow_input_and_output_on_loop_back_interface function
     allow_input_and_output_on_loopback_interface
 
-    # Calling the append_iptables_rules function
-    append_iptables_rules
+    # Calling the allow_specific_services_ipv4 function
+    allow_specific_services_ipv4
+
+    # Calling the append_rules_for_essential_security_measures_ipv4 function
+    append_rules_for_essential_security_measures_ipv4
+    
+    # Calling the allow_specific_services_ipv6 function
+    # allow_specific_services_ipv6
+
+    # Calling the append_rules_for_essential_security_measures_ipv6 function
+    # append_rules_for_essential_security_measures_ipv6
 
     # Calling the display_iptables_rules function
     display_iptables_rules
-    
-    # Calling the append_ip6tables_rules function
-    append_ip6tables_rules
 
     # Calling the display_ip6tables_rules function
     display_ip6tables_rules
@@ -85,7 +91,7 @@ allow_input_and_output_on_loopback_interface() {
 
 }
 
-append_iptables_rules() {
+allow_specific_services_ipv4() {
     # A function which appens iptables rules.
 
     echo -e "Appending IPv4 rules\n"
@@ -183,7 +189,51 @@ append_iptables_rules() {
 
 }
 
-append_ip6tables_rules() {
+append_rules_for_essential_security_measures_ipv4() {
+    # A function which appends firewall rules for essential security
+
+    # Logging
+    iptables -A INPUT -j LOG --log-prefix "IPTABLES-DROP: " --log-level 4
+    iptables -A OUTPUT -j LOG --log-prefix "IPTABLES-DROP: " --log-level 4
+
+    # Drop invalid packets
+    iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+
+    # Drop packets with too many fragments
+    iptables -A INPUT -f -j DROP
+
+    # Drop incoming NULL packets
+    iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+
+    # Drop XMAS packets
+    iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
+
+    # Drop SYN-FIN packets
+    iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
+
+    # Drop malformed packets
+    iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+
+    # Prevent DoS attacks (Adjust threshold as needed)
+    iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
+
+    # Drop all other incoming traffic
+    iptables -A INPUT -j DROP
+
+    # Reject outgoing traffic for unkown destinations
+    iptables -A OUTPUT -d 0.0.0.0/8 -j REJECT
+
+    iptables -A OUTPUT -d 127.0.0.0/8 -j REJECT
+
+    iptables -A OUTPUT -d 224.0.0.0/4 -j REJECT
+
+    iptables -A OUTPUT -d 240.0.0.0/5 -j REJECT
+
+    iptables -A OUTPUT -d 255.255.255.255 -j REJECT
+
+}
+
+allow_specific_services_ipv6() {
     # A function which appens iptables rules.
 
     echo -e "Appending IPv6 rules\n"
@@ -267,6 +317,44 @@ append_ip6tables_rules() {
 
 }
 
+append_rules_for_essential_security_measures_ipv6() {
+    # A function which appends ip6tables rules for essential security
+
+    # Logging
+    ip6tables -A INPUT -j LOG --log-prefix "IP6TABLES-DROP: " --log-level 4
+
+    ip6tables -A OUTPUT -j LOG --log-prefix "IP6TABLES-DROP: " --log-level 4
+
+    # Drop invalid packets
+    ip6tables -A INPUT -m conntrack --ctstate INVALID -j DROP
+
+    # Drop packets with too many fragments
+    ip6tables -A INPUT -f -j DROP
+
+    # Drop incoming NULL packets
+    ip6tables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+
+    # Drop XMAS packets
+    ip6tables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
+
+    # Drop SYN-FIN packets
+    ip6tables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
+
+    # Drop malformed packets
+    ip6tables -A INPUT -m conntrack --ctstate INVALID -j DROP
+
+    # Prevent DoS attacks (Adjust threshold as needed)
+    ip6tables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
+
+    # Reject all other incoming traffic
+    ip6tables -A INPUT -j DROP
+
+    # Reject outgoing traffic for unknown destinations
+    ip6tables -A OUTPUT -d ::/128 -j REJECT
+
+    ip6tables -A OUTPUT -d ::1/128 -j REJECT
+
+}
 
 display_iptables_rules() {
     # A function which displays the iptables rules
