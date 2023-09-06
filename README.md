@@ -26,7 +26,7 @@ __--help:__ Shows the help message and exits.
 
 1) Install the dependencies
 	
-       sudo apt install nano netfilter-persistent iptables-persistent -y
+       sudo apt install nano iptables netfilter-persistent iptables-persistent -y
 
 2) Download the installer
 	
@@ -72,7 +72,7 @@ __--help:__ Yardım sayfasını görüntüler.
 
 1) Bağımlılıkları yükle
 	
-       sudo apt install nano netfilter-persistent iptables-persistent -y
+       sudo apt install nano iptables netfilter-persistent iptables-persistent -y
 
 2) Yükleyiciyi indir
 	
