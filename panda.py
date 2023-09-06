@@ -77,7 +77,9 @@ editable_options = {
 
     'Unnecessary Apps List': 'Edit the list of apps that are unnecessary and will be deleted by panda if they are available in the system.',
 
-    'Service List': "Edit the list of services that you want it to be stopped and disabled.",
+    'Dangerous Services List': "Edit the list of services that you want them to be dead and disabled.",
+
+    'Security Services List': "Edit the list of services that you want them to be active and running",
 
     'Firewall': 'Edit the firewall rules',
 
@@ -151,11 +153,17 @@ def edit_mode():
 
             elif user_choice == "2":
 
-                service_list_file_path = Path(configuration_files_dir_path, 'services.list')
+                dangerous_services_list_file_path = Path(configuration_files_dir_path, 'dangerous_services.list')
 
-                system(f'nano {service_list_file_path}')
+                system(f'nano {dangerous_services_list_file_path}')
 
             elif user_choice == "3":
+
+                security_services_list_file_path = Path(configuration_files_dir_path, 'security_services.list')
+
+                system(f'nano {security_services_list_file_path}')
+
+            elif user_choice == "4":
                 
                 firewall_script_file_path = Path(scripts_dir_path, "fortify.sh")
 
