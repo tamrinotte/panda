@@ -43,7 +43,7 @@ scripts_dict = {
 
     'Evaporate': Path(scripts_dir_path, 'evaporate.sh'),
 
-    'Steamline': Path(scripts_dir_path, 'streamline.sh'),
+    'Streamline': Path(scripts_dir_path, 'streamline.sh'),
 
     'Fortify': Path(scripts_dir_path, 'fortify.sh'),
 

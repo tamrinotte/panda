@@ -9,6 +9,9 @@ main() {
     # Calling the enable_swap_file function.
     enable_swap_file
 
+	# Calling the enable_security_services function.
+	enable_security_services
+
     # Calling the scan_ports function
     scan_ports
     
@@ -25,6 +28,9 @@ declare_variables() {
 
 	# Creating a path which leads to the fstab file. Hint: fstab file is the file where you define the file systems that will be mount automatically.
 	fstab_file_path="/etc/fstab"
+
+	# Creating a path which leads to list of services that enhances computer's cyber security
+	security_services_file_path="/opt/panda/configuration_files/security_services.list"
 
 }
 
@@ -86,6 +92,31 @@ enable_swap_file () {
 		fi
 
 	fi
+
+}
+
+enable_security_services() {
+	# A function which enables servies that enhances computer's cyber security.
+
+	for service in $(cat $security_services_file_path); do
+
+		if [[ $(systemctl is-active "$service") != "active" ]]; then
+
+			echo "Starting $service"
+
+			systemctl start "$service"
+
+		fi
+
+		if [[ $(systemctl is-enabled "$service") != "enabled" ]]; then
+
+            echo "Enabling $service"
+
+            systemctl enable "$service"
+
+        fi
+
+	done
 
 }
 

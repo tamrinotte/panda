@@ -11,14 +11,16 @@ main() {
 }
 
 declare_variables() {
+    # A function which declares variables.
 
-    unnecessary_services_file_path="/opt/panda/configuration_files/services.list"
+    # Creating a path which references to the list of dangerous services
+    dangerous_services_file_path="/opt/panda/configuration_files/dangerous_services.list"
 
 }
 
 stop_and_disable_unnecessary_services() {
 
-    for service in $(cat $unnecessary_services_file_path);do
+    for service in $(cat $dangerous_services_file_path);do
 
         if [[ $(systemctl is-active "$service") == "active" ]]; then
 

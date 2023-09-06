@@ -45,3 +45,5 @@ nala
 veracrypt
 macchanger
 wireshark
+apparmor
+tcpd

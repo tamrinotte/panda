@@ -1,0 +1,14 @@
+cups
+cupsd
+avahi-daemon
+avahi-daemon.socket
+cups-browsed
+sshd
+ssh
+exim4
+openvpn
+apache2
+httpd
+bluetooth
+chronyd
+ntp
