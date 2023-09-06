@@ -61,7 +61,7 @@ chown $username:$username -R package/
 
 # Create the installer
 echo 'Creating the installer...'
-fpm -C package -s dir -t deb -n "panda" -v 0.1.0 -p panda.deb --after-install post_install_script.sh
+fpm -C package -s dir -t deb -n "panda" -v 0.1.0 -p panda.deb
 
 # Start the installer
 sudo dpkg -i panda.deb
