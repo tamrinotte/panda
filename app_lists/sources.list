@@ -47,3 +47,6 @@ macchanger
 wireshark
 apparmor
 tcpd
+libnotify-bin
+secure-delete
+iw
